@@ -20,6 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main_Win32.cpp" />
+    <ClCompile Include="SysClass.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SysClass.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
