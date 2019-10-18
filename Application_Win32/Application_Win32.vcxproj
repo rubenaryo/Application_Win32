@@ -19,11 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="System\Source Files\Main_Win32.cpp" />
-    <ClCompile Include="System\Source Files\SysClass.cpp" />
+    <ClInclude Include="System\SysClass.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="System\Header Files\SysClass.h" />
+    <ClCompile Include="System\Main.cpp" />
+    <ClCompile Include="System\SysClass.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

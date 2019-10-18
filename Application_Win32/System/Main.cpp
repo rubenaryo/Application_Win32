@@ -3,42 +3,7 @@ Ruben Young (rubenaryo@gmail.com)
 Date : 2019/10
 Description : This file contains the main function (entry point) for the application
 ----------------------------------------------*/
-
-#include <Windows.h>
-#include <tchar.h>
-
-#ifndef UNICODE
-#define UNICODE
-#endif
-
-// Window Procedure for this application
-LRESULT CALLBACK WndProc(_In_ HWND hwnd, _In_ UINT uMsg, _In_ WPARAM wParam, _In_ LPARAM lParam)
-{
-    //Callbacks for winapi 
-    switch (uMsg)
-    {
-    case WM_CLOSE: // if the close message was sent
-        DestroyWindow(hwnd); //destroy the window
-        break;
-    case WM_DESTROY:// if the destroy message was sent
-        PostQuitMessage(0); //post the quit message to the message manager
-        break;
-    case WM_KEYUP:
-        //if escape
-        if (wParam == VK_ESCAPE)
-        {
-            PostQuitMessage(0); //post the quit message to the message manager
-        }
-        break;
-    case WM_PAINT: // if we need to repaint the window, paint it white
-        PAINTSTRUCT ps;
-        HDC hdc = BeginPaint(hwnd, &ps);
-        FillRect(hdc, &ps.rcPaint, (HBRUSH)(COLOR_WINDOW + 1));
-        EndPaint(hwnd, &ps);
-        break;
-    }
-    return DefWindowProc(hwnd, uMsg, wParam, lParam);
-}
+#include "SysClass.h"
 
 // Entry point for the application
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow)
@@ -102,4 +67,33 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
     }
 
     return (int) msg.wParam;
+}
+
+// Window Procedure for this application
+LRESULT CALLBACK WndProc(_In_ HWND hwnd, _In_ UINT uMsg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+{
+    //Callbacks for winapi 
+    switch (uMsg)
+    {
+    case WM_CLOSE: // if the close message was sent
+        DestroyWindow(hwnd); //destroy the window
+        break;
+    case WM_DESTROY:// if the destroy message was sent
+        PostQuitMessage(0); //post the quit message to the message manager
+        break;
+    case WM_KEYUP:
+        //if escape
+        if (wParam == VK_ESCAPE)
+        {
+            PostQuitMessage(0); //post the quit message to the message manager
+        }
+        break;
+    case WM_PAINT: // if we need to repaint the window, paint it white
+        PAINTSTRUCT ps;
+        HDC hdc = BeginPaint(hwnd, &ps);
+        FillRect(hdc, &ps.rcPaint, (HBRUSH)(COLOR_WINDOW + 1));
+        EndPaint(hwnd, &ps);
+        break;
+    }
+    return DefWindowProc(hwnd, uMsg, wParam, lParam);
 }
