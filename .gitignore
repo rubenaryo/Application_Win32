@@ -3,6 +3,10 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# User-defined binary and intermediate folders
+Z_DELETE/
+_Binary/
+
 # User-specific files
 *.rsuser
 *.suo
