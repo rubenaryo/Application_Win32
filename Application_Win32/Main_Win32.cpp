@@ -7,6 +7,10 @@ Description : This file contains the main function (entry point) for the applica
 #include <Windows.h>
 #include <tchar.h>
 
+#ifndef UNICODE
+#define UNICODE
+#endif
+
 // Window Procedure for this application
 LRESULT CALLBACK WndProc(_In_ HWND hwnd, _In_ UINT uMsg, _In_ WPARAM wParam, _In_ LPARAM lParam)
 {
