@@ -15,6 +15,7 @@ Thanks to http://www.rastertek.com/gl40tut02.html
 // Include standard windows headers
 #include <Windows.h>
 #include <tchar.h>
+#include <stdlib.h>
 
 // Use Unicode character representations
 #ifndef UNICODE
