@@ -15,15 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main_Win32.cpp">
+    <ClCompile Include="System\Source Files\Main_Win32.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SysClass.cpp">
+    <ClCompile Include="System\Source Files\SysClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SysClass.h">
+    <ClInclude Include="System\Header Files\SysClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
