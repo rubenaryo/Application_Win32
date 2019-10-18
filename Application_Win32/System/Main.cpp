@@ -9,7 +9,7 @@ Description : This file contains the main function (entry point) for the applica
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow)
 {
     // Register the window class
-    const TCHAR CLASS_NAME[] = TEXT("APP_NAME");
+    const LPCTSTR CLASS_NAME = "APP_NAME";
 
     // Declare an empty WNDCLASSEX
     WNDCLASSEX wc;
@@ -33,13 +33,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
     // Register the window and check for failure to register
     if (!RegisterClassEx(&wc)) 
     // Failed:
-    { MessageBox(NULL, TEXT("Window Registration Failed!"), TEXT("Oh no!"), MB_ICONEXCLAMATION | MB_OK); exit(0); return 1; }
+    { MessageBox(NULL, "Window Registration Failed!", "Oh no!", MB_ICONEXCLAMATION | MB_OK); exit(0); return 1; }
 
     // Finally, create a window
     HWND WindowHandle = CreateWindowEx(
         WS_EX_APPWINDOW | WS_EX_WINDOWEDGE, // Optional window styles.
         CLASS_NAME,                         // Window class
-        TEXT("Hello World!"),               // Window text
+        CLASS_NAME,                     // Window text
         WS_OVERLAPPEDWINDOW,                // Window style
 
         // Size and position
@@ -52,7 +52,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLin
     );
 
     // Check for failure to create window
-    if (!WindowHandle) { MessageBox(NULL, TEXT("Create Window Failed!"), TEXT("Oh no!"), MB_ICONEXCLAMATION | MB_OK); exit(0); return 1; }
+    if (!WindowHandle) { MessageBox(NULL, "Create Window Failed!", "Oh no!", MB_ICONEXCLAMATION | MB_OK); exit(0); return 1; }
 
     // Display the window
     ShowWindow(WindowHandle, nCmdShow);

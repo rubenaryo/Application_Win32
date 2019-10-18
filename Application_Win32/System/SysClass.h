@@ -14,7 +14,6 @@ Thanks to http://www.rastertek.com/gl40tut02.html
 
 // Include standard windows headers
 #include <Windows.h>
-#include <tchar.h>
 #include <stdlib.h>
 
 // Use Unicode character representations
@@ -46,7 +45,7 @@ private:
 
 private:
     // Windows Fields
-    LPCWSTR m_appName;
+    LPCTSTR m_appName;
     HINSTANCE m_hInstance;
     HWND m_hwnd;
 
