@@ -29,6 +29,7 @@ class SysClass
 {
 public:
     SysClass();
+    SysClass(LPCWSTR a_appName);
     SysClass(const SysClass&);
     ~SysClass();
 
@@ -40,12 +41,12 @@ public:
     LRESULT CALLBACK MessageHandler(HWND, UINT, WPARAM, LPARAM);
 private:
     bool Frame();
-    bool InitWindows();
+    bool InitWindows(int a_Width, int a_Height);
     void ShutdownWindows();
 
 private:
     // Windows Fields
-    LPCTSTR m_appName;
+    LPCWSTR m_appName;
     HINSTANCE m_hInstance;
     HWND m_hwnd;
 
