@@ -13,7 +13,7 @@ which the IDE internally sorts into Headers and Source Files in the Solution Exp
 
 These configuration settings were set by using the Solution Properties GUI (Alt + Enter) and stored in the included '.vcxproj' and '.vcxproj.filters' files, so feel free to change them as you like!
 
-This config was heavily inspired by one used by one of my professors, which I thought was good enough to use for all my projects.
+This config was heavily inspired by one used by a professor of mine, which I thought was good enough to use for all my projects.
 
 ## Character Set
 This was built to support the Unicode character set.
