@@ -21,12 +21,24 @@
     <ClInclude Include="System\SysClass.h">
       <Filter>System\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="System\GraphicsSystem.h">
+      <Filter>System\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="System\InputSystem.h">
+      <Filter>System\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="System\SysClass.cpp">
       <Filter>System\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="System\Main.cpp">
+      <Filter>System\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="System\GraphicsSystem.cpp">
+      <Filter>System\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="System\InputSystem.cpp">
       <Filter>System\Source Files</Filter>
     </ClCompile>
   </ItemGroup>

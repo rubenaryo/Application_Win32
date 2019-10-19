@@ -19,9 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="System\GraphicsSystem.h" />
+    <ClInclude Include="System\InputSystem.h" />
     <ClInclude Include="System\SysClass.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="System\GraphicsSystem.cpp" />
+    <ClCompile Include="System\InputSystem.cpp" />
     <ClCompile Include="System\Main.cpp" />
     <ClCompile Include="System\SysClass.cpp" />
   </ItemGroup>
