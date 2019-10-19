@@ -43,7 +43,8 @@ bool SysClass::InitWindows(int& a_Width, int& a_Height)
 {
     WNDCLASSEX wc;
     DEVMODE screenSettings;
-    int xPos, yPos;
+    int xPos = 0;
+    int yPos = 0;
 
     // Global pointer to SysClass object
     AppHandle = this;
@@ -108,6 +109,10 @@ bool SysClass::InitWindows(int& a_Width, int& a_Height)
 
     DWORD dwExStyle = WS_EX_APPWINDOW | WS_EX_WINDOWEDGE;   // Window Extended Style
     DWORD dwWindowStyle = WS_OVERLAPPEDWINDOW;              // Window Borderless Style
+
+    // Define our window rectangle and do some setup
+    RECT rc = { xPos, yPos, xPos + a_Width, yPos + a_Height };
+    AdjustWindowRectEx(&rc, dwWindowStyle, FALSE, dwExStyle);
 
     // Create window and hold onto the window handle
     m_hwnd = CreateWindowEx( 
