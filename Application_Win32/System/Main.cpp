@@ -8,7 +8,7 @@ Description : This file contains the main function (entry point) for the applica
 // Entry point for the application
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow)
 {
-    pSysClass System = new SysClass(L"Engine");
+    pSysClass System = new SysClass(L"Hello World!");
 
     if (System->Init())
     {
