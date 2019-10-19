@@ -2,7 +2,7 @@
 Ruben Young (rubenaryo@gmail.com)
 Date : 2019/10
 Description : Interface (header) for System class
-Thanks to http://www.rastertek.com/gl40tut02.html
+Thanks to http://www.rastertek.com/dx11s2tut02.html
 ----------------------------------------------*/
 #ifndef SYSCLASS_H
 #define SYSCLASS_H
@@ -15,6 +15,10 @@ Thanks to http://www.rastertek.com/gl40tut02.html
 // Include standard windows headers
 #include <Windows.h>
 #include <stdlib.h>
+
+// Other Systems
+#include "GraphicsSystem.h"
+#include "InputSystem.h"
 
 // Use Unicode character representations
 #ifndef UNICODE
@@ -29,34 +33,37 @@ class SysClass
 {
 public:
     SysClass();
-    SysClass(LPCWSTR a_appName);
-    SysClass(const SysClass&);
     ~SysClass();
 
+    /// Exposed functions for main system operation
     bool Init();
-    void Shutdown();
     void Run();
-
+    void Shutdown();
+    
     // Message Handling Callback for Windows
     LRESULT CALLBACK MessageHandler(HWND, UINT, WPARAM, LPARAM);
 private:
+    /// Discrete actions that need to be done per frame
     bool Frame();
-    bool InitWindows(int a_Width, int a_Height);
+
+    /// Initialize main window using Win32 API
+    bool InitWindows(int& a_Width, int& a_Height);
+    
+    /// Clean up Win32
     void ShutdownWindows();
 
 private:
     // Windows Fields
-    LPCWSTR m_appName;
-    HINSTANCE m_hInstance;
-    HWND m_hwnd;
+    LPCWSTR         m_appName;
+    HINSTANCE       m_hInstance;
+    HWND            m_hwnd;
 
-    ///TODO: Pointers to other app systems  
+    // Main Systems
+    GraphicsSystem* m_pGraphics;
+    InputSystem*    m_pInput;
 };
 
-// Pointer-type definition
-typedef SysClass* pSysClass;
-
 // Global Application Handle
-static pSysClass AppHandle = nullptr;
+static SysClass* AppHandle = NULL;
 
 #endif

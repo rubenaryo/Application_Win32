@@ -6,9 +6,9 @@ Description : This file contains the main function (entry point) for the applica
 #include "SysClass.h"
 
 // Entry point for the application
-int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow)
+int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_  LPWSTR lpCmdLine, _In_  int nCmdShow)
 {
-    pSysClass System = new SysClass(L"Hello World!");
+    SysClass* System = new SysClass();
 
     if (System->Init())
     {
@@ -23,4 +23,3 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 
     return 0;
 }
-
