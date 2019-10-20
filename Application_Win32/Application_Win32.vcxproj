@@ -20,12 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System\GraphicsSystem.h" />
+    <ClInclude Include="System\IException.h" />
     <ClInclude Include="System\InputSystem.h" />
     <ClInclude Include="System\SysClass.h" />
     <ClInclude Include="System\WinApp.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="System\GraphicsSystem.cpp" />
+    <ClCompile Include="System\IException.cpp" />
     <ClCompile Include="System\InputSystem.cpp" />
     <ClCompile Include="System\Main.cpp" />
     <ClCompile Include="System\SysClass.cpp" />

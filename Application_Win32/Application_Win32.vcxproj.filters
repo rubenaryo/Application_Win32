@@ -30,6 +30,9 @@
     <ClInclude Include="System\WinApp.h">
       <Filter>System\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="System\IException.h">
+      <Filter>System\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="System\SysClass.cpp">
@@ -42,6 +45,9 @@
       <Filter>System\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="System\InputSystem.cpp">
+      <Filter>System\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="System\IException.cpp">
       <Filter>System\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
