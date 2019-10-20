@@ -27,6 +27,9 @@
     <ClInclude Include="System\InputSystem.h">
       <Filter>System\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="System\WinApp.h">
+      <Filter>System\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="System\SysClass.cpp">

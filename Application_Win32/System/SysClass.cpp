@@ -6,21 +6,18 @@ Description : Implementation for System class methods
 #include "SysClass.h"
 
 // Default constructor
-SysClass::SysClass()
+SysClass::SysClass() : m_appName(L"NAME_DEFAULT"), m_hInstance(0), m_hwnd(0)
 {
-    m_appName   = L"NAME_DEFAULT";
-    m_pInput    = NULL;
+    // Initialize all systems to NULL
+    m_pInput = NULL;
     m_pGraphics = NULL;
-
-    m_hInstance = 0;
-    m_hwnd      = 0;
 }
 
 // System Initializer
 bool SysClass::Init()
 {
     // TODO: Evaluate whether it's worth holding screenwidth/height in some manager class
-    int screenWidth  = 0;
+    int screenWidth = 0;
     int screenHeight = 0;
 
     // Create the application window and check for errors
@@ -58,8 +55,8 @@ bool SysClass::InitWindows(int& a_Width, int& a_Height)
     wc.cbClsExtra = 0;
     wc.cbWndExtra = 0;
     wc.hInstance = m_hInstance;
-    wc.hIcon = LoadIcon(m_hInstance, IDI_WINLOGO);
-    wc.hIconSm = wc.hIcon;
+    wc.hIcon = NULL;                // TODO: Import our own icon!
+    wc.hIconSm = NULL;              // TODO: Import our own icon!
     wc.hCursor = LoadCursor(NULL, IDC_ARROW);
     wc.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
     wc.lpszMenuName = NULL;
@@ -73,7 +70,8 @@ bool SysClass::InitWindows(int& a_Width, int& a_Height)
         exit(0); return false;
     }
 
-    a_Width  = GetSystemMetrics(SM_CXSCREEN);
+    // TODO:
+    a_Width = GetSystemMetrics(SM_CXSCREEN);
     a_Height = GetSystemMetrics(SM_CYSCREEN);
 
     // Check for fullscreen mode and change settings accordingly
@@ -83,10 +81,10 @@ bool SysClass::InitWindows(int& a_Width, int& a_Height)
         memset(&screenSettings, 0, sizeof(screenSettings));
 
         screenSettings.dmSize = sizeof(screenSettings);         // Size of the structure
-        screenSettings.dmPelsWidth  = (ULONG) a_Width;          // Pixel Width of the visible screen
-        screenSettings.dmPelsHeight = (ULONG) a_Height;         // Pixel Height of the visible screen
+        screenSettings.dmPelsWidth = (ULONG)a_Width;          // Pixel Width of the visible screen
+        screenSettings.dmPelsHeight = (ULONG)a_Height;         // Pixel Height of the visible screen
         screenSettings.dmBitsPerPel = 32;                       // 32 bits per pixel
-        
+
         // The fields modified
         screenSettings.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
 
@@ -115,7 +113,7 @@ bool SysClass::InitWindows(int& a_Width, int& a_Height)
     AdjustWindowRectEx(&rc, dwWindowStyle, FALSE, dwExStyle);
 
     // Create window and hold onto the window handle
-    m_hwnd = CreateWindowEx( 
+    m_hwnd = CreateWindowEx(
         dwExStyle,          // Extended Style
         m_appName,          // Class Name
         m_appName,          // Window Name
@@ -138,7 +136,7 @@ bool SysClass::InitWindows(int& a_Width, int& a_Height)
     ShowWindow(m_hwnd, SW_SHOW);
     SetForegroundWindow(m_hwnd);
     SetFocus(m_hwnd);
-    
+
     // Hide cursor
     //ShowCursor(false);
     return true;
@@ -222,6 +220,7 @@ void SysClass::Shutdown()
 
     if (m_pInput)
     {
+        // TODO: Input may require a special shutdown also
         delete m_pInput;
         m_pInput = NULL;
     }
@@ -263,11 +262,11 @@ LRESULT CALLBACK SysClass::MessageHandler(HWND hwnd, UINT uMsg, WPARAM wParam, L
     case WM_KEYDOWN: // Key Press Event
         //m_pInput->KeyDown((unsigned int)wparam);
         return 0;
-    // Check if a key has been released on the keyboard.
+        // Check if a key has been released on the keyboard.
     case WM_KEYUP: // Key Release Event
         //m_Input->KeyUp((unsigned int)wparam);
         return 0;
-    // Any other messages send to the default message handler as our application won't make use of them.
+        // Any other messages send to the default message handler as our application won't make use of them.
     default:
         return DefWindowProc(hwnd, uMsg, wParam, lParam);
     }

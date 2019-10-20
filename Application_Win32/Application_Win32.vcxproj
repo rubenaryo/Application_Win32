@@ -22,6 +22,7 @@
     <ClInclude Include="System\GraphicsSystem.h" />
     <ClInclude Include="System\InputSystem.h" />
     <ClInclude Include="System\SysClass.h" />
+    <ClInclude Include="System\WinApp.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="System\GraphicsSystem.cpp" />

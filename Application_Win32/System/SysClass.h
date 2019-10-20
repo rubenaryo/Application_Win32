@@ -7,13 +7,8 @@ Thanks to http://www.rastertek.com/dx11s2tut02.html
 #ifndef SYSCLASS_H
 #define SYSCLASS_H
 
-// Speed up compilation by disabling certain includes
-#ifndef WIN32_LEAN_AND_MEAN
-#define WIN32_LEAN_AND_MEAN
-#endif
-
 // Include standard windows headers
-#include <Windows.h>
+#include "WinApp.h" // Windows.h included here
 #include <stdlib.h>
 
 // Other Systems
@@ -39,7 +34,7 @@ public:
     bool Init();
     void Run();
     void Shutdown();
-    
+
     // Message Handling Callback for Windows
     LRESULT CALLBACK MessageHandler(HWND, UINT, WPARAM, LPARAM);
 private:
@@ -48,7 +43,7 @@ private:
 
     /// Initialize main window using Win32 API
     bool InitWindows(int& a_Width, int& a_Height);
-    
+
     /// Clean up Win32
     void ShutdownWindows();
 
@@ -60,7 +55,7 @@ private:
 
     // Main Systems
     GraphicsSystem* m_pGraphics;
-    InputSystem*    m_pInput;
+    InputSystem* m_pInput;
 };
 
 // Global Application Handle
