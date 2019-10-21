@@ -20,8 +20,15 @@ bool SysClass::Init()
     int screenWidth = 0;
     int screenHeight = 0;
 
+    try
+    {
     // Create the application window and check for errors
     if (!InitWindows(screenWidth, screenHeight)) return false;
+    }
+    catch (const IException& e)
+    {
+        MessageBox(NULL, e.what16(), e.GetType(), MB_OK | MB_ICONEXCLAMATION);
+    }
 
     // Initialize all systems and check for errors
     m_pInput = new InputSystem();
@@ -65,7 +72,7 @@ bool SysClass::InitWindows(int& a_Width, int& a_Height)
 
     // Register the window and check for failure to register
     HRESULT hregisterError = RegisterClassEx(&wc);
-    if (!hregisterError)
+    if (hregisterError == 0)
     {
         throw WND_EXCEPT(hregisterError);
         exit(hregisterError); return false;

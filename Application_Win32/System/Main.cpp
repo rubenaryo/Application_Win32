@@ -8,25 +8,18 @@ Description : This file contains the main function (entry point) for the applica
 // Entry point for the application
 int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_  LPWSTR lpCmdLine, _In_  int nCmdShow)
 {
-    try {
-        SysClass* System = new SysClass();
-
-        if (System->Init())
-        {
-            System->Run();
-        }
-
-        // Clean up internal systems
-        System->Shutdown();
-
-        delete System;
-        System = nullptr;
-    }
-    catch (const IException& e)
+    SysClass* System = new SysClass();
+    
+    if (System->Init())
     {
-        MessageBox(NULL, e.what16(), e.GetType(), MB_OK | MB_ICONEXCLAMATION);
+        System->Run();
     }
     
-
+    // Clean up internal systems
+    System->Shutdown();
+    
+    delete System;
+    System = nullptr;
+    
     return -1;
 }
