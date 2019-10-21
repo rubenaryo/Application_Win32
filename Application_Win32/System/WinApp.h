@@ -52,4 +52,10 @@ by first defining macros that disable certain  features that go unused
 // Always include Windows.h at the very end
 #include <Windows.h>
 
+// Helper macro for wide strings
+#define WIDEN2(x) L ## x
+#define WIDEN(x) WIDEN2(x)
+#define __WFILE__ WIDEN(__FILE__)
+#define __WLINE__ WIDEN(__LINE__)
+
 #endif

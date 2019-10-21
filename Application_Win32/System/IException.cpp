@@ -7,14 +7,14 @@ Description : Implementation of custom exception functions
 #include <sstream>
 
 // Simple constructor to initialize member fields
-IException::IException(int a_Line, const char* a_Filename) noexcept
+IException::IException(int a_Line, const wchar_t* a_Filename) noexcept
     : m_Line( a_Line ), m_File(a_Filename) {}
 
 // Collects information about the error and returns the address of our buffer
-const char* IException::what() const noexcept
+const wchar_t* IException::what16() const noexcept
 {
     // Write exception information into an output string object
-    std::ostringstream oss;
+    std::wstringstream oss;
     oss << GetType() << std::endl << GetOriginString();
     
     // Store the value of the string into local buffer
@@ -24,25 +24,18 @@ const char* IException::what() const noexcept
     return m_buf.c_str();
 }
 
-const char* IException::GetType() const noexcept
-{
-    // TODO: make GetType() a pure virtual function so other systems can handle
-    // their own exceptions their own preferred way
-    return "Standard Exception";
-}
-
 // Accessor for filename
-const std::string& IException::GetFile() const noexcept
+const std::wstring& IException::GetFile() const noexcept
 {
     return m_File;
 }
 
 // Gather information about where the exception happened
-std::string IException::GetOriginString() const noexcept
+std::wstring IException::GetOriginString() const noexcept
 {
     // Write location info into a std::string object 
-    std::ostringstream oss;
-    oss << "[File] " << m_File << std::endl
-        << "[Line] " << m_Line;
+    std::wstringstream oss;
+    oss << "[File] " << std::endl << m_File << std::endl << std::endl
+        << "[Line] " << std::endl << m_Line;
     return oss.str();
 }

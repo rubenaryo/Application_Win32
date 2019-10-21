@@ -15,6 +15,11 @@ Thanks to http://www.rastertek.com/dx11s2tut02.html
 #include "GraphicsSystem.h"
 #include "InputSystem.h"
 
+// Custom Exception Interface
+#include "IException.h"
+#include <string>
+#include <sstream>
+
 // Use Unicode character representations
 #ifndef UNICODE
 #define UNICODE
@@ -56,9 +61,28 @@ private:
     // Main Systems
     GraphicsSystem* m_pGraphics;
     InputSystem* m_pInput;
+
+
+public:
+    class Exception : public IException
+    {
+    public:
+        Exception(int a_Line, const wchar_t* a_Filename, HRESULT a_HRESULT) noexcept;
+        const wchar_t* what16() const noexcept override;
+        const wchar_t* GetType() const noexcept;
+        static std::wstring TranslateErrorCode(HRESULT a_HRESULT) noexcept;
+        HRESULT GetErrorCode() const noexcept;
+        std::wstring GetErrorString() const noexcept;
+    private:
+        HRESULT m_HRESULT;
+    };
 };
 
 // Global Application Handle
 static SysClass* AppHandle = NULL;
+
+// Custom Exception helper macros
+#define WND_EXCEPT(a_HRESULT) SysClass::Exception( __LINE__, __WFILE__, a_HRESULT )
+#define WND_LAST_EXCEPT() WND_EXCEPT(GetLastError())
 
 #endif

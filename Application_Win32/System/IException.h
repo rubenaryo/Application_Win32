@@ -13,18 +13,18 @@ Description : Interface for custom exception implementation
 class IException : public std::exception
 {
 public: 
-    IException(int a_Line, const char* a_Filename) noexcept;
-    const char* what() const noexcept override;
-    const char* GetType() const noexcept;
-    const std::string& GetFile() const noexcept;
-    std::string GetOriginString() const noexcept;
+    IException(int a_Line, const wchar_t* a_Filename) noexcept;
+    virtual const wchar_t* what16() const noexcept;
+    virtual const wchar_t* GetType() const noexcept = 0;
+    const std::wstring& GetFile() const noexcept;
+    std::wstring GetOriginString() const noexcept;
 
 private:
     // Store line number and file name locally for when displaying information
     int m_Line;
-    std::string m_File;
+    std::wstring m_File;
 
 protected:
     // Buffer that holds the info for what()
-    mutable std::string m_buf;
+    mutable std::wstring m_buf;
 };

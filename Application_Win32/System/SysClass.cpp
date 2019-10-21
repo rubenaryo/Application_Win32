@@ -64,10 +64,11 @@ bool SysClass::InitWindows(int& a_Width, int& a_Height)
     wc.cbSize = sizeof(WNDCLASSEX);
 
     // Register the window and check for failure to register
-    if (!RegisterClassEx(&wc))
+    HRESULT hregisterError = RegisterClassEx(&wc);
+    if (!hregisterError)
     {
-        MessageBox(NULL, L"Window Registration Failed!", L"Oh no!", MB_ICONEXCLAMATION | MB_OK);
-        exit(0); return false;
+        throw WND_EXCEPT(hregisterError);
+        exit(hregisterError); return false;
     }
 
     // TODO:
@@ -128,7 +129,7 @@ bool SysClass::InitWindows(int& a_Width, int& a_Height)
     // Register the window and check for failure to register
     if (!m_hwnd)
     {
-        MessageBox(NULL, L"Create Window Failed!", L"Oh no!", MB_ICONEXCLAMATION | MB_OK);
+        throw WND_LAST_EXCEPT();
         exit(0); return false;
     }
 
@@ -270,4 +271,65 @@ LRESULT CALLBACK SysClass::MessageHandler(HWND hwnd, UINT uMsg, WPARAM wParam, L
     default:
         return DefWindowProc(hwnd, uMsg, wParam, lParam);
     }
+}
+
+/*
+    Custom Exception Implementation
+*/
+
+SysClass::Exception::Exception(int a_Line, const wchar_t* a_Filename, HRESULT a_HRESULT) noexcept 
+    : IException(a_Line, a_Filename)
+    , m_HRESULT(a_HRESULT)
+{}
+
+const wchar_t* SysClass::Exception::what16() const noexcept
+{
+    std::wstringstream oss;
+    oss << GetType() << std::endl
+        << "[Error Code] "  << std::endl << GetErrorCode()   << std::endl << std::endl
+        << "[Description] " << std::endl << GetErrorString() << std::endl
+        << GetOriginString() << std::endl;
+
+    m_buf = oss.str();
+    return m_buf.c_str();
+}
+
+const wchar_t* SysClass::Exception::GetType() const noexcept
+{
+    return L"Windows Exception";
+}
+
+std::wstring SysClass::Exception::TranslateErrorCode(HRESULT a_HRESULT) noexcept
+{
+    wchar_t* pMsgBuf = NULL;
+
+    const DWORD nMsgLen = FormatMessage(
+        FORMAT_MESSAGE_ALLOCATE_BUFFER |
+        FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+        NULL, a_HRESULT, 0,
+        reinterpret_cast<LPWSTR>(&pMsgBuf), 0, NULL
+    );
+
+    // Failure
+    if (nMsgLen == 0)
+    {
+        return L"Unidentified error code";
+    }
+
+    std::wstring errorString = pMsgBuf;
+
+    // Once, copied,we can free the stack buffer
+    LocalFree(pMsgBuf);
+    return errorString;
+}
+
+HRESULT SysClass::Exception::GetErrorCode() const noexcept
+{
+    return m_HRESULT;
+}
+
+std::wstring SysClass::Exception::GetErrorString() const noexcept
+{
+    std::wstring resized = TranslateErrorCode(m_HRESULT);
+    return TranslateErrorCode(m_HRESULT);
 }
