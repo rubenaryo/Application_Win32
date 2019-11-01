@@ -5,6 +5,8 @@ Description : GraphicsSystem method definitions
 ----------------------------------------------*/
 #include "GraphicsSystem.h"
 
+using namespace System::Graphics;
+
 GraphicsSystem::GraphicsSystem()
 {
 }

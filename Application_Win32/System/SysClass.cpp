@@ -4,9 +4,12 @@ Date : 2019/10
 Description : Implementation for System class methods
 ----------------------------------------------*/
 #include "SysClass.h"
+#include "GraphicsSystem.h"
+#include "GameInput.h"
+using namespace System;
 
 // Default constructor
-SysClass::SysClass() : m_appName(L"NAME_DEFAULT"), m_hInstance(0), m_hwnd(0)
+SysClass::SysClass() : m_appName(L"APP_NAME"), m_hInstance(0), m_hwnd(0)
 {
     // Initialize all systems to NULL
     m_pInput = NULL;
@@ -22,19 +25,21 @@ bool SysClass::Init()
 
     try
     {
-    // Create the application window and check for errors
-    if (!InitWindows(screenWidth, screenHeight)) return false;
+
+        // Create the application window and check for errors
+        if (!InitWindows(screenWidth, screenHeight)) return false;
+
     }
     catch (const IException& e)
     {
-        MessageBox(NULL, e.what16(), e.GetType(), MB_OK | MB_ICONEXCLAMATION);
+        MessageBox(m_hwnd, e.what16(), e.GetType(), MB_OK | MB_ICONEXCLAMATION);
     }
 
     // Initialize all systems and check for errors
-    m_pInput = new InputSystem();
+    m_pInput = new Input::GameInput();
     if (!m_pInput) return false;
 
-    m_pGraphics = new GraphicsSystem();
+    m_pGraphics = new Graphics::GraphicsSystem();
     if (!m_pGraphics) return false;
 
     // Also run internal graphics initialization
@@ -83,7 +88,7 @@ bool SysClass::InitWindows(int& a_Width, int& a_Height)
     a_Height = GetSystemMetrics(SM_CYSCREEN);
 
     // Check for fullscreen mode and change settings accordingly
-    if (FULL_SCREEN)
+    if (Graphics::FULL_SCREEN)
     {
         // Clear everything at the DEVMODE's memory location
         memset(&screenSettings, 0, sizeof(screenSettings));
@@ -156,7 +161,7 @@ void SysClass::ShutdownWindows()
     //ShowCursor(true);
 
     // Fix full screen mode
-    if (FULL_SCREEN)
+    if (Graphics::FULL_SCREEN)
     {
         ChangeDisplaySettings(NULL, 0);
     }
@@ -212,6 +217,9 @@ bool SysClass::Frame()
 
     // Do frame processing for the graphics system
     if (!m_pGraphics->Frame()) return false;
+
+    // Process user input
+    m_pInput->Frame();
 
     return true;
 }
@@ -282,6 +290,7 @@ LRESULT CALLBACK SysClass::MessageHandler(HWND hwnd, UINT uMsg, WPARAM wParam, L
 
 /*
     Custom Exception Implementation
+        This exception type is mainly defined for windows-caused exceptions, like failing to create a window or register a wndclass
 */
 
 SysClass::Exception::Exception(int a_Line, const wchar_t* a_Filename, HRESULT a_HRESULT) noexcept 

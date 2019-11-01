@@ -5,6 +5,8 @@ Description : This file contains the main function (entry point) for the applica
 ----------------------------------------------*/
 #include "SysClass.h"
 
+using namespace System;
+
 // Entry point for the application
 int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_  LPWSTR lpCmdLine, _In_  int nCmdShow)
 {

@@ -33,6 +33,12 @@
     <ClInclude Include="System\IException.h">
       <Filter>System\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="System\GameInput.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\InputBinding.h">
+      <Filter>System\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="System\SysClass.cpp">
@@ -48,6 +54,12 @@
       <Filter>System\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="System\IException.cpp">
+      <Filter>System\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="System\GameInput.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\InputBinding.cpp">
       <Filter>System\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
