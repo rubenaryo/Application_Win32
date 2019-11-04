@@ -19,9 +19,9 @@ SysClass::SysClass() : m_appName(L"APP_NAME"), m_hInstance(0), m_hwnd(0)
 // System Initializer
 bool SysClass::Init()
 {
-    // TODO: Evaluate whether it's worth holding screenwidth/height in some manager class
-    int screenWidth = 0;
-    int screenHeight = 0;
+    // Default Screen Resolution: 800x600
+    int screenWidth = 800;
+    int screenHeight = 600;
 
     try
     {
@@ -48,6 +48,9 @@ bool SysClass::Init()
     return true;
 }
 
+
+// Takes default windowed dimensions as parameters and initializes Windows
+// - Fills out WNDCLASS, then registers it, then adjusts window rect and sets it as focus
 bool SysClass::InitWindows(int& a_Width, int& a_Height)
 {
     WNDCLASSEX wc;
@@ -83,13 +86,12 @@ bool SysClass::InitWindows(int& a_Width, int& a_Height)
         exit(hregisterError); return false;
     }
 
-    // TODO:
-    a_Width = GetSystemMetrics(SM_CXSCREEN);
-    a_Height = GetSystemMetrics(SM_CYSCREEN);
-
     // Check for fullscreen mode and change settings accordingly
     if (Graphics::FULL_SCREEN)
     {
+        a_Width = GetSystemMetrics(SM_CXSCREEN);
+        a_Height = GetSystemMetrics(SM_CYSCREEN);
+
         // Clear everything at the DEVMODE's memory location
         memset(&screenSettings, 0, sizeof(screenSettings));
 
@@ -106,16 +108,20 @@ bool SysClass::InitWindows(int& a_Width, int& a_Height)
 
         // Move window to top left
         xPos = yPos = 0;
+
+        // Teleport cursor to screen center
+        SetCursorPos(a_Width / 2, a_Height / 2);
     }
     else
     {
-        // Default windowed options:
-        // 800x600 window in the center of the screen
-        a_Width = 800;
-        a_Height = 600;
+        const int halfWidth = a_Width / 2;
+        const int halfHeight = a_Height / 2;
 
-        xPos = (GetSystemMetrics(SM_CXSCREEN) - a_Width) / 2;
-        yPos = (GetSystemMetrics(SM_CYSCREEN) - a_Height) / 2;
+        xPos = GetSystemMetrics(SM_CXSCREEN)/2 - halfWidth;
+        yPos = GetSystemMetrics(SM_CYSCREEN)/2 - halfHeight;
+
+        // Teleport cursor to window center
+        SetCursorPos(xPos + halfWidth, yPos + halfHeight);
     }
 
     DWORD dwExStyle = WS_EX_APPWINDOW | WS_EX_WINDOWEDGE;   // Window Extended Style
@@ -151,7 +157,7 @@ bool SysClass::InitWindows(int& a_Width, int& a_Height)
     SetFocus(m_hwnd);
 
     // Hide cursor
-    //ShowCursor(false);
+    ShowCursor(false);
     return true;
 }
 
@@ -275,14 +281,14 @@ LRESULT CALLBACK SysClass::MessageHandler(HWND hwnd, UINT uMsg, WPARAM wParam, L
     // Handle all special case messages
     switch (uMsg)
     {
-    case WM_KEYDOWN: // Key Press Event
-        //m_pInput->KeyDown((unsigned int)wparam);
+    case WM_LBUTTONDOWN:
+    case WM_RBUTTONDOWN:
+    case WM_MBUTTONDOWN:
+        // do something on mouse down
         return 0;
-        // Check if a key has been released on the keyboard.
-    case WM_KEYUP: // Key Release Event
-        //m_Input->KeyUp((unsigned int)wparam);
-        return 0;
-        // Any other messages send to the default message handler as our application won't make use of them.
+
+
+
     default:
         return DefWindowProc(hwnd, uMsg, wParam, lParam);
     }
