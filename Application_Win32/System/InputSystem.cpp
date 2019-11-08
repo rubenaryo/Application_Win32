@@ -38,10 +38,6 @@ namespace Input {
 
         // Update active/non-active keymaps
         update();
-
-        // Act on user input
-
-
     }
 
     // Clears active key map, then fills it with all values from m_keyMap with a 'fulfilled' chord
@@ -56,7 +52,6 @@ namespace Input {
             bool activeKey = true;
 
             // Test Chord
-            // TODO: Find a way to encapsulate this functionality
             for (Binding binding : key.second->GetChord())
             {
                 if (GetKeyboardKeyState(binding.m_KeyCode) != binding.m_KeyState)
