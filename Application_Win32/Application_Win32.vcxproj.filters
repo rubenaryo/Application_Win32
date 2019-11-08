@@ -16,12 +16,18 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{6a60500f-2e1b-4006-8388-1d626ab0ae6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Source Files">
+      <UniqueIdentifier>{1b78f0dc-84bf-463a-8ce7-fc2edf826028}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Header Files">
+      <UniqueIdentifier>{d46c6d85-7fa7-4956-b32d-8fb7e9f20c03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System\SysClass.h">
-      <Filter>System\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="System\GraphicsSystem.h">
       <Filter>System\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="System\InputSystem.h">
@@ -33,11 +39,14 @@
     <ClInclude Include="System\IException.h">
       <Filter>System\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="System\GameInput.h">
-      <Filter>System</Filter>
-    </ClInclude>
     <ClInclude Include="System\InputBinding.h">
       <Filter>System\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="System\GameInput.h">
+      <Filter>System\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\GraphicsSystem.h">
+      <Filter>Graphics\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -47,20 +56,20 @@
     <ClCompile Include="System\Main.cpp">
       <Filter>System\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="System\GraphicsSystem.cpp">
-      <Filter>System\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="System\InputSystem.cpp">
       <Filter>System\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="System\IException.cpp">
       <Filter>System\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="System\GameInput.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
     <ClCompile Include="System\InputBinding.cpp">
       <Filter>System\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="System\GameInput.cpp">
+      <Filter>System\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\GraphicsSystem.cpp">
+      <Filter>Graphics\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

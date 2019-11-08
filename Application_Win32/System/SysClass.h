@@ -12,7 +12,7 @@ Thanks to http://www.rastertek.com/dx11s2tut02.html
 #include <stdlib.h>
 
 // Other Systems
-#include "GraphicsSystem.h"
+#include "../Graphics/GraphicsSystem.h"
 #include "GameInput.h"
 
 // Custom Exception Interface

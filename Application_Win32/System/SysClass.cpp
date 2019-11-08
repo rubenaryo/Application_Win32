@@ -4,7 +4,7 @@ Date : 2019/10
 Description : Implementation for System class methods
 ----------------------------------------------*/
 #include "SysClass.h"
-#include "GraphicsSystem.h"
+#include "../Graphics/GraphicsSystem.h"
 #include "GameInput.h"
 using namespace System;
 
