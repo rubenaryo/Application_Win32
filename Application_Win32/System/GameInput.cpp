@@ -34,7 +34,7 @@ namespace Input {
             switch (pair.first)
             {
             case GameCommands::Quit:
-                //PostQuitMessage(0);
+                SetCursorPos(GetSystemMetrics(SM_CXSCREEN) / 2, GetSystemMetrics(SM_CYSCREEN) / 2);
                 break;
             }
         }

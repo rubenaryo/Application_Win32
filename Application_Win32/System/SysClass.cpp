@@ -157,7 +157,7 @@ bool SysClass::InitWindows(int& a_Width, int& a_Height)
     SetFocus(m_hwnd);
 
     // Hide cursor
-    ShowCursor(false);
+    //ShowCursor(false);
     return true;
 }
 
