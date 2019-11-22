@@ -17,8 +17,6 @@ Thanks to http://www.rastertek.com/dx11s2tut02.html
 
 // Custom Exception Interface
 #include "IException.h"
-#include <string>
-#include <sstream>
 
 // Use Unicode character representations
 #ifndef UNICODE
@@ -61,9 +59,9 @@ namespace System
 
         // Main Systems
         Graphics::GraphicsSystem* m_pGraphics;
-        Input::GameInput* m_pInput;
+        Input::GameInput*         m_pInput;
 
-
+    // Custom System-type Exception
     public:
         class Exception : public IException
         {

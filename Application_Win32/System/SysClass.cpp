@@ -6,6 +6,8 @@ Description : Implementation for System class methods
 #include "SysClass.h"
 #include "../Graphics/GraphicsSystem.h"
 #include "GameInput.h"
+#include <sstream>
+#include <string>
 using namespace System;
 
 // Default constructor
@@ -293,15 +295,16 @@ LRESULT CALLBACK SysClass::MessageHandler(HWND hwnd, UINT uMsg, WPARAM wParam, L
         return DefWindowProc(hwnd, uMsg, wParam, lParam);
     }
 }
-
+//>:3
+#pragma region System Exception Implementaion 
 /*
-    Custom Exception Implementation
+    Custom System Exception Implementation
         This exception type is mainly defined for windows-caused exceptions, like failing to create a window or register a wndclass
 */
 
-SysClass::Exception::Exception(int a_Line, const wchar_t* a_Filename, HRESULT a_HRESULT) noexcept 
-    : IException(a_Line, a_Filename)
-    , m_HRESULT(a_HRESULT)
+SysClass::Exception::Exception(int a_Line, const wchar_t* a_Filename, HRESULT a_HRESULT) noexcept :
+    IException(a_Line, a_Filename),
+    m_HRESULT(a_HRESULT)
 {}
 
 const wchar_t* SysClass::Exception::what16() const noexcept
@@ -340,7 +343,7 @@ std::wstring SysClass::Exception::TranslateErrorCode(HRESULT a_HRESULT) noexcept
 
     std::wstring errorString = pMsgBuf;
 
-    // Once, copied,we can free the stack buffer
+    // Once copied, we can free the stack buffer
     LocalFree(pMsgBuf);
     return errorString;
 }

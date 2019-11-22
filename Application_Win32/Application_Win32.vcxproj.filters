@@ -48,7 +48,7 @@
     <ClInclude Include="Graphics\GraphicsSystem.h">
       <Filter>Graphics\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D3DClass.h">
+    <ClInclude Include="Graphics\D3DClass.h">
       <Filter>Graphics\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -74,7 +74,7 @@
     <ClCompile Include="Graphics\GraphicsSystem.cpp">
       <Filter>Graphics\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D3DClass.cpp">
+    <ClCompile Include="Graphics\D3DClass.cpp">
       <Filter>Graphics\Source Files</Filter>
     </ClCompile>
   </ItemGroup>

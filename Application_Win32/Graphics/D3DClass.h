@@ -24,7 +24,7 @@ public:
     Direct3DClass();
     ~Direct3DClass();
 
-    bool Init();
+    bool Init(int a_Width, int a_Height, HWND a_MainWindow);
     void OnResize();
     void UpdateWindowState();
     void Update(float dt);
@@ -49,14 +49,14 @@ protected:
     bool m_Enable4xMSAA;
     unsigned int m_4xMSAAQuality;
 
-    ID3D11Device* m_pD3DDevice;
-    ID3D11DeviceContext* m_pD3DImmediateContext;
-    IDXGISwapChain* m_pSwapChain;
-    ID3D11Texture2D* m_pDepthStencilBuffer;
+    ID3D11Device*           m_pD3DDevice;
+    ID3D11DeviceContext*    m_pD3DImmediateContext;
+    IDXGISwapChain*         m_pSwapChain;
+    ID3D11Texture2D*        m_pDepthStencilBuffer;
     ID3D11RenderTargetView* m_pRenderTargetView;
     ID3D11DepthStencilView* m_pDepthStencilView;
-    D3D11_VIEWPORT m_ScreenViewport;
-    D3D_DRIVER_TYPE m_D3DDriverType;
+    D3D11_VIEWPORT          m_ScreenViewport;
+    D3D_DRIVER_TYPE         m_D3DDriverType;
 
 };
 

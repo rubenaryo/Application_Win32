@@ -25,6 +25,6 @@ private:
     std::wstring m_File;
 
 protected:
-    // Buffer that holds the info for what()
+    // Buffer that holds the info for what16()
     mutable std::wstring m_buf;
 };

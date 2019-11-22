@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="D3DClass.h" />
+    <ClInclude Include="Graphics\D3DClass.h" />
     <ClInclude Include="Graphics\GraphicsSystem.h" />
     <ClInclude Include="System\GameInput.h" />
     <ClInclude Include="System\IException.h" />
@@ -29,7 +29,7 @@
     <ClInclude Include="System\WinApp.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="D3DClass.cpp" />
+    <ClCompile Include="Graphics\D3DClass.cpp" />
     <ClCompile Include="Graphics\GraphicsSystem.cpp" />
     <ClCompile Include="System\GameInput.cpp" />
     <ClCompile Include="System\IException.cpp" />
