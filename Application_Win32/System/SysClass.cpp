@@ -295,7 +295,7 @@ LRESULT CALLBACK SysClass::MessageHandler(HWND hwnd, UINT uMsg, WPARAM wParam, L
         return DefWindowProc(hwnd, uMsg, wParam, lParam);
     }
 }
-//>:3
+
 #pragma region System Exception Implementaion 
 /*
     Custom System Exception Implementation
@@ -358,3 +358,4 @@ std::wstring SysClass::Exception::GetErrorString() const noexcept
     std::wstring resized = TranslateErrorCode(m_HRESULT);
     return TranslateErrorCode(m_HRESULT);
 }
+#pragma endregion
