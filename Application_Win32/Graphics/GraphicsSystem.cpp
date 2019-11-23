@@ -26,23 +26,24 @@ GraphicsSystem::~GraphicsSystem()
 
 bool GraphicsSystem::Init(int a_Width, int a_Height, HWND a_MainWindow)
 {
-    bool tResult;
-
     // Create Space for Direct3D and check for null
     m_pD3DClass = new Direct3DClass();
     if (!m_pD3DClass) return false;
     
     // Initialize the direct3d object
-    tResult = m_pD3DClass->Init(a_Width, a_Height, a_MainWindow);
-    
-    
-
+    bool tResult = m_pD3DClass->Init(a_Width, a_Height, a_MainWindow);
+    if (!tResult) return false;
 
     return true;
 }
 
 void GraphicsSystem::Shutdown()
 {
+    // Cleanup D3D allocation
+    if (m_pD3DClass) delete m_pD3DClass;
+    m_pD3DClass = 0;
+
+
     return;
 }
 

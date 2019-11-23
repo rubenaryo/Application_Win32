@@ -33,11 +33,15 @@ public:
 protected:
     void CalculateFrameStats();
 
+    HRESULT CreateDeviceAndContext(UINT a_CreateDeviceFlags, D3D_FEATURE_LEVEL* a_FeatureLevel);
+
+    HRESULT DescribeAndCreateSwapChain();
+
 protected:
     // Client Width, Height, and HWND (Window Handle)
     int m_ClientWidth;
     int m_ClientHeight;
-    HWND m_hMainWindow;
+    HWND m_MainWindow;
 
     // States of the window
     bool m_Paused;
@@ -60,9 +64,7 @@ protected:
 
 };
 
-}}
-
-
-
+}
+}
 
 #endif
