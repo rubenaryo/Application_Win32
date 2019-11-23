@@ -6,9 +6,10 @@ Description : Interface for the GraphicsSystem class
 #ifndef GRAPHICSSYSTEM_H
 #define GRAPHICSSYSTEM_H
 
-#include <Windows.h>
+#include "../System/WinApp.h"
 #include "D3DClass.h"
 #include "../System/IException.h"
+
 namespace System {
 namespace Graphics {
     // Global Variables
@@ -50,4 +51,8 @@ namespace Graphics {
         };
     };
 }}
+
+// Custom Exception helper macros
+#define GFX_EXCEPT(a_HRESULT) GraphicsSystem::Exception( __LINE__, __WFILE__, a_HRESULT )
+
 #endif
