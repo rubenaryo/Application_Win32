@@ -31,8 +31,16 @@ bool GraphicsSystem::Init(int a_Width, int a_Height, HWND a_MainWindow)
     if (!m_pD3DClass) return false;
     
     // Initialize the direct3d object
-    bool tResult = m_pD3DClass->Init(a_Width, a_Height, a_MainWindow);
-    if (!tResult) return false;
+
+    try 
+    {
+        bool tResult = m_pD3DClass->Init(a_Width, a_Height, a_MainWindow);
+        if (!tResult) return false;
+    }
+    catch (const IException & e)
+    {
+        MessageBox(a_MainWindow, e.what16(), e.GetType(), MB_OK | MB_ICONEXCLAMATION);
+    }
 
     return true;
 }

@@ -35,7 +35,9 @@ protected:
 
     HRESULT CreateDeviceAndContext(UINT a_CreateDeviceFlags, D3D_FEATURE_LEVEL* a_FeatureLevel);
 
-    HRESULT DescribeAndCreateSwapChain();
+    HRESULT CreateSwapChainAndDepthBuffer();
+
+
 
 protected:
     // Client Width, Height, and HWND (Window Handle)
