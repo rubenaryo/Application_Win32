@@ -170,39 +170,39 @@ HRESULT Direct3DClass::CreateSwapChainAndDepthBuffer()
     dxgiAdapter->GetParent(__uuidof(IDXGIFactory), (void**)& dxgiFactory);
 
     // Finally, create the Swap Chain itself (stored in m_pSwapChain)
-    HRESULT hr;
-    hr = dxgiFactory->CreateSwapChain(
+    HRESULT tProcessResult;
+    tProcessResult = dxgiFactory->CreateSwapChain(
         m_pD3DDevice,
         &SCdesc,
         &m_pSwapChain
     );
 
     // Check for Swap Chain Creation Failure
-    if (FAILED(hr)) 
+    if (FAILED(tProcessResult)) 
     { 
         // Release COM interfaces
         dxgiDevice->Release();
         dxgiAdapter->Release();
         dxgiFactory->Release();
-        return hr; 
+        return tProcessResult; 
     }
 
     // Create Depth/Stencil Buffer
-    hr = m_pD3DDevice->CreateTexture2D(     
+    tProcessResult = m_pD3DDevice->CreateTexture2D(     
         &depthStencilDesc,
         0,
         &m_pDepthStencilBuffer);
 
     // Check for Texture Creation failure
-    if (FAILED(hr)) { return hr; }
+    if (FAILED(tProcessResult)) { return tProcessResult; }
 
-    hr = m_pD3DDevice->CreateDepthStencilView(
+    tProcessResult = m_pD3DDevice->CreateDepthStencilView(
         m_pDepthStencilBuffer,
         0,                    // Use first mipmap level
         &m_pDepthStencilView);
 
     // Check for View Creation failure
-    if (FAILED(hr)) { return hr; }
+    if (FAILED(tProcessResult)) { return tProcessResult; }
 
     // Release COM interfaces (TODO: Verify what should be done in case of swap chain creation failure)
     dxgiDevice->Release();
@@ -210,11 +210,12 @@ HRESULT Direct3DClass::CreateSwapChainAndDepthBuffer()
     dxgiFactory->Release();
 
     // Return successful HRESULT
-    return hr;
+    return tProcessResult;
 }
 
 void Direct3DClass::OnResize()
 {    
+
 }    
      
 void Direct3DClass::UpdateWindowState()
@@ -232,5 +233,3 @@ void Direct3DClass::Draw()
 void Direct3DClass::CalculateFrameStats()
 {
 }
-
-
