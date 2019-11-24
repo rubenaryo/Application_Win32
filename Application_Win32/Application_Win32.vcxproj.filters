@@ -42,14 +42,17 @@
     <ClInclude Include="System\InputBinding.h">
       <Filter>System\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="System\GameInput.h">
-      <Filter>System\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Graphics\GraphicsSystem.h">
       <Filter>Graphics\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Graphics\D3DClass.h">
       <Filter>Graphics\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="System\GameInput.h">
+      <Filter>System\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="System\GameTimer.h">
+      <Filter>System\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +79,9 @@
     </ClCompile>
     <ClCompile Include="Graphics\D3DClass.cpp">
       <Filter>Graphics\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="System\GameTimer.cpp">
+      <Filter>System\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
