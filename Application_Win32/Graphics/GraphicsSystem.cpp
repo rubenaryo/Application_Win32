@@ -10,15 +10,14 @@ Description : GraphicsSystem method definitions
 using namespace System::Graphics;
 
 GraphicsSystem::GraphicsSystem() :
-    m_pD3DClass(0)
-{
-    
-}
+    m_pD3DClass(0),
+    m_pTimer(0)
+{}
 
 GraphicsSystem::GraphicsSystem(const GraphicsSystem& other) :
-    m_pD3DClass(other.m_pD3DClass)
-{
-}
+    m_pD3DClass(other.m_pD3DClass),
+    m_pTimer(other.m_pTimer)
+{}
 
 GraphicsSystem::~GraphicsSystem()
 {
@@ -26,14 +25,16 @@ GraphicsSystem::~GraphicsSystem()
 
 bool GraphicsSystem::Init(int a_Width, int a_Height, HWND a_MainWindow)
 {
+    // Create a new Game Timer
+    m_pTimer = new GameTimer();
+    if (!m_pTimer) return false;
+
     // Create Space for Direct3D and check for null
     m_pD3DClass = new Direct3DClass();
     if (!m_pD3DClass) return false;
     
-    // Initialize the direct3d object
-
     try 
-    {
+    {  // Initialize the direct3d object
         bool tResult = m_pD3DClass->Init(a_Width, a_Height, a_MainWindow);
         if (!tResult) return false;
     }
@@ -51,13 +52,39 @@ void GraphicsSystem::Shutdown()
     if (m_pD3DClass) delete m_pD3DClass;
     m_pD3DClass = 0;
 
+    // Cleanup Timer allocation
+    if (m_pTimer) delete m_pTimer;
+    m_pTimer = 0;
 
     return;
 }
 
 bool GraphicsSystem::Frame()
 {
+
+    CalculateFrameStats();
     return true;
+}
+
+void GraphicsSystem::CalculateFrameStats()
+{
+    static int   FrameCount  = 0;
+    static float ElapsedTime = 0.0f;
+
+    // This method is called every frame
+    FrameCount++;
+
+    if ((m_pTimer->GameTime() - ElapsedTime) >= 1.f) // FPS computed over 1sec interval
+    {
+        float FPS = (float)FrameCount; // FPS = (Frames) / 1 (seconds)
+        float MillisecondsPerFrame = 1000.0f / FPS;
+
+        /* TODO: Do Stuff with this info */
+
+        // Reset for next time
+        FrameCount = 0;
+        ElapsedTime += 1;
+    }
 }
 
 bool GraphicsSystem::Render()

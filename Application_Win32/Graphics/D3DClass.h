@@ -37,8 +37,6 @@ protected:
 
     HRESULT CreateSwapChainAndDepthBuffer();
 
-
-
 protected:
     // Client Width, Height, and HWND (Window Handle)
     int m_ClientWidth;

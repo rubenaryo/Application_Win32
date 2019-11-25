@@ -7,8 +7,9 @@ Description : Interface for the GraphicsSystem class
 #define GRAPHICSSYSTEM_H
 
 #include "../System/WinApp.h"
-#include "D3DClass.h"
+#include "../System/GameTimer.h"
 #include "../System/IException.h"
+#include "D3DClass.h"
 
 namespace System {
 namespace Graphics {
@@ -30,10 +31,12 @@ namespace Graphics {
         void Shutdown();
         bool Frame();
     
-    private:
+    protected:
         bool Render();
+        void CalculateFrameStats();
 
         Direct3DClass* m_pD3DClass;
+        GameTimer*     m_pTimer;
 
     // Custom Graphics Exception
     public:
