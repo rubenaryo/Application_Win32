@@ -21,6 +21,8 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
     {
         System->Run();
     }
+    else
+        return -1;
     
     // Clean up internal systems
     System->Shutdown();
@@ -28,5 +30,5 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
     delete System;
     System = nullptr;
     
-    return -1;
+    return 0;
 }
