@@ -31,8 +31,6 @@ public:
     void Draw();
 
 protected:
-    void CalculateFrameStats();
-
     HRESULT CreateDeviceAndContext(UINT a_CreateDeviceFlags, D3D_FEATURE_LEVEL* a_FeatureLevel);
 
     HRESULT CreateSwapChainAndDepthBuffer();

@@ -229,7 +229,3 @@ void Direct3DClass::Update(float dt)
 void Direct3DClass::Draw()
 {    
 }    
-     
-void Direct3DClass::CalculateFrameStats()
-{
-}
