@@ -16,8 +16,8 @@ namespace System {
     public:
         GameTimer();
 
-        double GameTime() const;
-        double DeltaTime() const;
+        float GameTime() const;
+        float DeltaTime() const;
 
         void Reset();
         void Start();

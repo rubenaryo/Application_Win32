@@ -28,15 +28,22 @@ GameTimer::GameTimer() :
 }
 
 
-double GameTimer::GameTime() const
+float GameTimer::GameTime() const
 {
-    return 0.0;
+    if (m_Stopped)
+    {
+        return (float)((m_StopTime - m_PausedTime) - m_BaseTime) * m_SecondsPerCount;
+    }
+    else
+    {
+        return (float)((m_CurrTime - m_PausedTime) - m_BaseTime) * m_SecondsPerCount;
+    }
 }
 
 // Accessor for DeltaTime member
-double GameTimer::DeltaTime() const
+float GameTimer::DeltaTime() const
 {
-    return m_DeltaTime;
+    return (float) m_DeltaTime;
 }
 
 void GameTimer::Reset()
@@ -54,14 +61,35 @@ void GameTimer::Start()
     __int64 startTime;
     QueryPerformanceCounter((LARGE_INTEGER*)&startTime);
 
+    // When Resuming the timer from a stopped state
     if (m_Stopped)
     {
+        // Accumulate paused time
+        m_PausedTime += (startTime - m_StopTime);
 
+        // Reset Previous Time
+        m_PrevTime = startTime;
+
+        // Reset Stop Time and switch flag
+        m_StopTime = 0;
+        m_Stopped = false;
     }
 }
+
 void GameTimer::Stop()
 {
+    // Only do something when not stopped
+    if (m_Stopped == false)
+    {
+        __int64 currTime;
+        QueryPerformanceCounter((LARGE_INTEGER*)&currTime);
+
+        // Save the time we've stopped and switch flag
+        m_StopTime = currTime;
+        m_Stopped = true;
+    }
 }
+
 void GameTimer::Tick()
 {
     // Dont run the timer if we're stopped
