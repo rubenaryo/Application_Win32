@@ -24,7 +24,6 @@ namespace Graphics {
     {
     public:
         GraphicsSystem();
-        GraphicsSystem(const GraphicsSystem&);
         ~GraphicsSystem();
     
         bool Init(int a_Width, int a_Height, HWND a_MainWindow);
@@ -34,11 +33,17 @@ namespace Graphics {
     protected:
         bool Render();
         void CalculateFrameStats();
+   
+    protected:
+        bool m_Paused;
+        bool m_Minimized;
+        bool m_Maximized;
+        bool m_ResizeDragging;
 
         Direct3DClass* m_pD3DClass;
-        GameTimer*     m_pTimer;
-
-    // Custom Graphics Exception
+        GameTimer* m_pTimer;
+    
+        // Custom Graphics Exception
     public:
         class Exception : public IException
         {

@@ -6,22 +6,19 @@ Description : GraphicsSystem method definitions
 #include "GraphicsSystem.h"
 #include <sstream>
 #include <string>
-
 using namespace System::Graphics;
 
 GraphicsSystem::GraphicsSystem() :
+    m_Paused(false),
+    m_Minimized(false),
+    m_Maximized(false),
+    m_ResizeDragging(false),
     m_pD3DClass(0),
     m_pTimer(0)
 {}
 
-GraphicsSystem::GraphicsSystem(const GraphicsSystem& other) :
-    m_pD3DClass(other.m_pD3DClass),
-    m_pTimer(other.m_pTimer)
-{}
-
 GraphicsSystem::~GraphicsSystem()
-{
-}
+{}
 
 bool GraphicsSystem::Init(int a_Width, int a_Height, HWND a_MainWindow)
 {
@@ -61,7 +58,6 @@ void GraphicsSystem::Shutdown()
 
 bool GraphicsSystem::Frame()
 {
-
     CalculateFrameStats();
     return true;
 }

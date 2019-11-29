@@ -41,12 +41,6 @@ protected:
     int m_ClientHeight;
     HWND m_MainWindow;
 
-    // States of the window
-    bool m_Paused;
-    bool m_Minimized;
-    bool m_Maximized;
-    bool m_ResizeDragging;
-
     // Direct3D-Specific fields
     bool m_Enable4xMSAA;
     unsigned int m_4xMSAAQuality;
@@ -64,5 +58,7 @@ protected:
 
 }
 }
+
+
 
 #endif

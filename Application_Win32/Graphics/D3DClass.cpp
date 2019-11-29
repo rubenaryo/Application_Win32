@@ -3,6 +3,7 @@ Ruben Young (rubenaryo@gmail.com)
 Date : 2019/11
 Description : Implementation of base Direct3D functionality
 ----------------------------------------------*/
+#include <DirectXColors.h>
 #include "GraphicsSystem.h" //GFX_EXCEPT
 #include "D3DClass.h"
 using namespace System::Graphics;
@@ -12,10 +13,6 @@ Direct3DClass::Direct3DClass() :
     m_ClientWidth(0),
     m_ClientHeight(0),
     m_MainWindow(0),
-    m_Paused(false),
-    m_Minimized(false),
-    m_Maximized(false),
-    m_ResizeDragging(false),
     m_Enable4xMSAA(false),
     m_4xMSAAQuality(0U),
     m_pD3DDevice(0),
@@ -228,4 +225,17 @@ void Direct3DClass::Update(float dt)
      
 void Direct3DClass::Draw()
 {    
+    assert(m_pD3DImmediateContext);
+    assert(m_pSwapChain);
+
+    // Clear the backbuffer to cornflower blue
+    m_pD3DImmediateContext->ClearRenderTargetView(m_pRenderTargetView,
+        reinterpret_cast<const float*>(&DirectX::Colors::CornflowerBlue));
+    
+    // Clear depth buffer to 1, stencil buffer to 0
+    m_pD3DImmediateContext->ClearDepthStencilView(m_pDepthStencilView,
+        D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0U);
+
+    // Present back buffer to screen
+    m_pSwapChain->Present(0, 0);
 }    
