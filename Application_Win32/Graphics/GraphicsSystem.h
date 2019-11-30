@@ -26,22 +26,24 @@ namespace Graphics {
         GraphicsSystem();
         ~GraphicsSystem();
     
-        bool Init(int a_Width, int a_Height, HWND a_MainWindow);
-        void Shutdown();
-        bool Frame();
-    
-    protected:
-        bool Render();
-        void CalculateFrameStats();
-   
-    protected:
+        bool Init(int a_Width, int a_Height, HWND a_MainWindow);    // Initialize Timer and D3D
+        void Shutdown();                                            // Cleanup Timer and D3D
+        bool Frame();                                               // Method runs per frame
+        void OnResize();
+            
+    public:
         bool m_Paused;
         bool m_Minimized;
         bool m_Maximized;
         bool m_ResizeDragging;
+        
+        GameTimer* m_pTimer;        // Game timer made public so it can be accessed by SysClass
+        
+    protected:
+        void CalculateFrameStats();
 
-        Direct3DClass* m_pD3DClass;
-        GameTimer* m_pTimer;
+        Direct3DClass* m_pD3DClass; //Direct3D Implementation
+
     
         // Custom Graphics Exception
     public:

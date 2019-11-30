@@ -31,8 +31,10 @@ public:
     void Draw();
 
 protected:
+    // Fill out D3DDevice, D3DImmediateContext
     HRESULT CreateDeviceAndContext(UINT a_CreateDeviceFlags, D3D_FEATURE_LEVEL* a_FeatureLevel);
 
+    // Fill out SwapChain, DepthStencilBuffer
     HRESULT CreateSwapChainAndDepthBuffer();
 
 protected:

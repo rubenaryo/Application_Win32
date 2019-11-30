@@ -31,7 +31,7 @@ bool GraphicsSystem::Init(int a_Width, int a_Height, HWND a_MainWindow)
     if (!m_pD3DClass) return false;
     
     try 
-    {  // Initialize the direct3d object
+    {   // Initialize the direct3d object
         bool tResult = m_pD3DClass->Init(a_Width, a_Height, a_MainWindow);
         if (!tResult) return false;
     }
@@ -58,8 +58,21 @@ void GraphicsSystem::Shutdown()
 
 bool GraphicsSystem::Frame()
 {
-    CalculateFrameStats();
+    m_pTimer->Tick();
+
+    if (!m_Paused)
+    {
+        m_pD3DClass->Update(m_pTimer->DeltaTime());
+        m_pD3DClass->Draw();
+        CalculateFrameStats();
+    }
+    
     return true;
+}
+
+void GraphicsSystem::OnResize()
+{
+    m_pD3DClass->OnResize();
 }
 
 void GraphicsSystem::CalculateFrameStats()
@@ -81,11 +94,6 @@ void GraphicsSystem::CalculateFrameStats()
         FrameCount = 0;
         ElapsedTime += 1;
     }
-}
-
-bool GraphicsSystem::Render()
-{
-    return true;
 }
 
 #pragma region Graphics Exception Implementation
