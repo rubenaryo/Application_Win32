@@ -22,7 +22,7 @@ class Direct3DClass
 {
 public:
     Direct3DClass();
-    ~Direct3DClass();
+    virtual ~Direct3DClass();
 
     bool Init(int a_Width, int a_Height, HWND a_MainWindow);
     void OnResize();
