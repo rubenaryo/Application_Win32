@@ -240,4 +240,9 @@ void Direct3DClass::Draw()
 
     // Present back buffer to screen
     m_pSwapChain->Present(0, 0);
-}    
+}
+
+float Direct3DClass::AspectRatio() const
+{
+    return static_cast<float>(m_ClientWidth / m_ClientHeight);
+}

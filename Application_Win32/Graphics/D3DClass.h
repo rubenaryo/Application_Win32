@@ -29,6 +29,7 @@ public:
     void UpdateWindowState();
     void Update(float dt);
     void Draw();
+    float AspectRatio() const;
 
 protected:
     // Fill out D3DDevice, D3DImmediateContext
