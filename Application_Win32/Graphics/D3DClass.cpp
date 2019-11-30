@@ -76,6 +76,8 @@ bool Direct3DClass::Init(int a_Width, int a_Height, HWND a_MainWindow)
     else
         return false;
 
+    pBackBuffer->Release();
+
     // Bind views to OM Stage
     m_pD3DImmediateContext->OMSetRenderTargets(
         1, &m_pRenderTargetView, m_pDepthStencilView);
