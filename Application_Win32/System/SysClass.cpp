@@ -286,10 +286,33 @@ LRESULT CALLBACK SysClass::MessageHandler(HWND hwnd, UINT uMsg, WPARAM wParam, L
     case WM_LBUTTONDOWN:
     case WM_RBUTTONDOWN:
     case WM_MBUTTONDOWN:
-        // do something on mouse down
+        // Query Input Manager
         return 0;
 
+    case WM_LBUTTONUP:
+    case WM_RBUTTONUP:
+    case WM_MBUTTONUP:
+        // Query Input Manager
+        return 0;
 
+    case WM_ENTERSIZEMOVE:
+        m_pGraphics->m_Paused = true;
+        m_pGraphics->m_ResizeDragging = true;
+        m_pGraphics->m_pTimer->Stop();
+        return 0;
+    
+    case WM_EXITSIZEMOVE:
+        m_pGraphics->m_Paused = false;
+        m_pGraphics->m_ResizeDragging = false;
+        m_pGraphics->m_pTimer->Start();
+        m_pGraphics->OnResize();
+        return 0;
+
+    // This is caught to prevent too small of a window
+    case WM_GETMINMAXINFO:
+        ((MINMAXINFO*)lParam)->ptMinTrackSize.x = 200;
+        ((MINMAXINFO*)lParam)->ptMinTrackSize.y = 200;
+        return 0;
 
     default:
         return DefWindowProc(hwnd, uMsg, wParam, lParam);
